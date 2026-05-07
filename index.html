@@ -617,7 +617,7 @@
       </p>
       <textarea id="settingsJson" class="settings-area" spellcheck="false" aria-label="設定JSON"></textarea>
       <div class="dialog-foot">
-        <span class="dialog-help" id="shareStatus">フォント・サイズ・字間・行送り・行長・背景・揃え・palt・本文を含みます。</span>
+        <span class="dialog-help" id="shareStatus">フォント・サイズ・字間・行間・行長・背景・揃え・palt・本文を含みます。</span>
         <div class="dialog-actions">
           <button type="button" class="ghost-pill" id="copySettings">JSONをコピー</button>
           <button type="button" class="ghost-pill primary" id="applySettings">適用</button>
@@ -775,11 +775,11 @@
           </div>
 
           <div class="row">
-            <label for="leading">行送り</label>
+            <label for="leading">行間</label>
             <div class="control with-value">
-              <input id="leading" type="range" min="100" max="300" step="5" value="160" aria-label="行送り(%)" />
+              <input id="leading" type="range" min="100" max="300" step="5" value="160" aria-label="行間(%)" />
               <span class="num-with-unit">
-                <input id="leadingNum" type="number" min="100" max="300" step="5" value="160" aria-label="行送りの値(%)" />
+                <input id="leadingNum" type="number" min="100" max="300" step="5" value="160" aria-label="行間の値(%)" />
                 <span class="unit" aria-hidden="true">%</span>
               </span>
             </div>
@@ -1160,7 +1160,7 @@ font-feature-settings: ${featureSettings};`;
 
   function openShareDialog() {
     els.settingsJson.value = JSON.stringify(gatherSettings(), null, 2);
-    setShareStatus('フォント・サイズ・字間・行送り・行長・背景・揃え・palt・本文を含みます。');
+    setShareStatus('フォント・サイズ・字間・行間・行長・背景・揃え・palt・本文を含みます。');
     if (typeof els.shareDialog.showModal === 'function') {
       els.shareDialog.showModal();
     } else {
