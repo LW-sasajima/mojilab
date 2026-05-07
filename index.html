@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Text Design — Mixed Typography Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&family=Lora:wght@400;500;600&family=Fraunces:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;500;600&family=DM+Serif+Display&family=Spectral:wght@300;400;500;600&family=Source+Serif+4:wght@300;400;500;600&family=Manrope:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700&family=Zen+Old+Mincho:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Klee+One:wght@400;600&family=BIZ+UDPMincho&family=BIZ+UDPGothic:wght@400;700&family=Kosugi+Maru&family=M+PLUS+1p:wght@300;400;500;700&family=M+PLUS+Rounded+1c:wght@300;400;500;700&family=Sawarabi+Mincho&family=Sawarabi+Gothic&display=swap" />
+
+<style>
+  :root {
+    --color-eggshell: #fdfcfc;
+    --color-powder: #f5f3f1;
+    --color-chalk: #e5e5e5;
+    --color-fog: #b1b0b0;
+    --color-gravel: #777169;
+    --color-slate: #a59f97;
+    --color-obsidian: #000000;
+    --color-signal-blue: #0447ff;
+    --color-ember: #ff4704;
+
+    --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Geist Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --shadow-card: rgba(0,0,0,0.4) 0px 0px 1.143px 0px, rgba(0,0,0,0.04) 0px 2px 4px 0px;
+    --shadow-inset: rgba(0,0,0,0.075) 0px 0px 0px 0.5px inset;
+
+    --panel-right: 296px;
+    --topbar-h: 48px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--color-eggshell);
+    color: var(--color-obsidian);
+    font-family: var(--font-inter);
+    font-feature-settings: "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+
+  /* ——————————————————————————————— shell ——————————————————————————————— */
+
+  .shell {
+    display: grid;
+    grid-template-rows: var(--topbar-h) 1fr;
+    height: 100vh;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--color-chalk);
+    background: var(--color-eggshell);
+    z-index: 5;
+  }
+  .topbar .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .topbar .brand .mark {
+    font-family: 'Fraunces', 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: -0.4px;
+  }
+  .topbar .brand .sub {
+    font-size: 12px;
+    color: var(--color-gravel);
+    letter-spacing: 0.1px;
+  }
+  .topbar .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* main 2-column workspace */
+  .work {
+    display: grid;
+    grid-template-columns: 1fr var(--panel-right);
+    min-height: 0;
+    height: 100%;
+  }
+
+  .panel-side {
+    background: var(--color-eggshell);
+    border-right: 1px solid var(--color-chalk);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .panel-side.right {
+    border-right: 0;
+    border-left: 1px solid var(--color-chalk);
+    overflow-y: auto;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--color-chalk);
+    flex-shrink: 0;
+  }
+  .panel-head h2 {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--color-obsidian);
+  }
+  .panel-head .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-gravel);
+  }
+
+  /* ——————————————————————————————— center: canvas ——————————————————————————————— */
+
+  .stage {
+    background: var(--color-powder);
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px;
+    min-height: 0;
+  }
+
+  .canvas-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 100%;
+    padding: 48px 56px;
+    transition: background .2s ease;
+  }
+  .canvas-card.bg-eggshell { background: var(--color-eggshell); }
+  .canvas-card.bg-white { background: #ffffff; }
+  .canvas-card.bg-powder { background: var(--color-powder); box-shadow: rgba(0,0,0,0.4) 0px 0px 1px 0px; }
+  .canvas-card.bg-dark { background: var(--color-obsidian); box-shadow: rgba(0,0,0,0.4) 0px 0px 1px 0px; }
+  .canvas-card.bg-dark .canvas { color: var(--color-eggshell); }
+
+  .canvas-card .canvas-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-chalk);
+    flex-wrap: wrap;
+  }
+  .canvas-card.bg-dark .canvas-meta { border-bottom-color: rgba(255,255,255,0.12); }
+  .canvas-card .pair-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-gravel);
+  }
+  .canvas-card.bg-dark .pair-label { color: var(--color-fog); }
+  .canvas-card .pair-label .dot {
+    width: 8px; height: 8px; border-radius: 9999px; background: var(--color-ember);
+  }
+  .canvas-card .pair-label .dot.b { background: var(--color-signal-blue); }
+  .canvas-card .pair-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .canvas {
+    color: var(--color-obsidian);
+    outline: none;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    margin: 0 auto;
+  }
+  .canvas[data-empty="true"]::before {
+    content: attr(data-placeholder);
+    color: var(--color-slate);
+    pointer-events: none;
+  }
+
+  /* metrics strip below canvas */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-chalk);
+  }
+  .canvas-card.bg-dark .metrics { border-top-color: rgba(255,255,255,0.12); }
+  .metric { padding: 0 8px; }
+  .metric:not(:last-child) { border-right: 1px solid var(--color-chalk); }
+  .canvas-card.bg-dark .metric:not(:last-child) { border-right-color: rgba(255,255,255,0.12); }
+  .metric .k {
+    font-size: 10px;
+    color: var(--color-gravel);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+  .canvas-card.bg-dark .metric .k { color: var(--color-fog); }
+  .metric .v {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-obsidian);
+    margin: 0;
+  }
+  .canvas-card.bg-dark .metric .v { color: var(--color-eggshell); }
+
+  /* ——————————————————————————————— right: inspector ——————————————————————————————— */
+
+  .inspector { padding: 0; }
+
+  .insp-section {
+    border-bottom: 1px solid var(--color-chalk);
+    padding: 14px 16px 16px;
+  }
+  .insp-section h3 {
+    margin: 0 0 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--color-obsidian);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
+    column-gap: 8px;
+    margin-bottom: 10px;
+  }
+  .row:last-child { margin-bottom: 0; }
+  .row > label {
+    font-size: 11px;
+    color: var(--color-gravel);
+    letter-spacing: 0.1px;
+  }
+  .row > .control { min-width: 0; }
+  .row > .control.with-value {
+    display: grid;
+    grid-template-columns: 1fr 64px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .num-with-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .num-with-unit input[type=number] {
+    padding-right: 22px;
+  }
+  .num-with-unit .unit {
+    position: absolute;
+    right: 7px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-gravel);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* slider */
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+    cursor: pointer;
+    margin: 0;
+  }
+  input[type=range]:focus { outline: none; }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--color-chalk);
+    border-radius: 9999px;
+  }
+  input[type=range]::-moz-range-track {
+    height: 2px;
+    background: var(--color-chalk);
+    border-radius: 9999px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    margin-top: -6px;
+    border-radius: 9999px;
+    background: var(--color-obsidian);
+    border: 2px solid var(--color-eggshell);
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 0px 1px;
+    transition: transform .12s ease;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--color-obsidian);
+    border: 2px solid var(--color-eggshell);
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 0px 1px;
+  }
+  input[type=range]:active::-webkit-slider-thumb { transform: scale(1.1); }
+
+  /* numeric value next to slider */
+  input[type=number] {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    background: #ffffff;
+    border: 1px solid var(--color-chalk);
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-obsidian);
+    box-shadow: var(--shadow-inset);
+    text-align: right;
+    transition: border-color .12s ease, box-shadow .12s ease;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+  }
+  input[type=number]:hover { border-color: var(--color-fog); }
+  input[type=number]:focus {
+    outline: none;
+    border-color: var(--color-obsidian);
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 0px 1px inset;
+  }
+
+  /* select — compact */
+  select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #ffffff
+      url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3e%3cpath fill='none' stroke='%23000' stroke-width='1.2' d='M1 1l4 4 4-4'/%3e%3c/svg%3e")
+      no-repeat right 10px center;
+    border: 1px solid var(--color-chalk);
+    border-radius: 4px;
+    padding: 6px 28px 6px 10px;
+    font-family: var(--font-inter);
+    font-size: 12px;
+    color: var(--color-obsidian);
+    line-height: 1.4;
+    box-shadow: var(--shadow-inset);
+    cursor: pointer;
+    transition: border-color .12s ease, box-shadow .12s ease;
+  }
+  select:hover { border-color: var(--color-fog); }
+  select:focus {
+    outline: none;
+    border-color: var(--color-obsidian);
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 0px 1px inset;
+  }
+
+  /* segmented control */
+  .seg {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    border: 1px solid var(--color-chalk);
+    border-radius: 9999px;
+    padding: 2px;
+    gap: 2px;
+    background: #ffffff;
+    box-shadow: var(--shadow-inset);
+  }
+  .seg button {
+    border: 0;
+    background: transparent;
+    padding: 5px 6px;
+    border-radius: 9999px;
+    font-family: var(--font-inter);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-obsidian);
+    cursor: pointer;
+    transition: background .12s ease, color .12s ease;
+    white-space: nowrap;
+  }
+  .seg button[aria-pressed="true"] {
+    background: var(--color-obsidian);
+    color: var(--color-eggshell);
+  }
+  .seg button:focus-visible {
+    outline: 2px solid var(--color-obsidian);
+    outline-offset: 1px;
+  }
+
+  /* ——— share dialog ——— */
+  dialog.share-dialog {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    max-width: min(560px, 92vw);
+    width: 100%;
+  }
+  dialog.share-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(2px);
+  }
+  .dialog-card {
+    background: var(--color-eggshell);
+    border-radius: 24px;
+    box-shadow:
+      rgba(0,0,0,0.4) 0px 0px 1px 0px,
+      rgba(0,0,0,0.08) 0px 8px 24px 0px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .dialog-head h3 {
+    margin: 0;
+    font-family: 'Fraunces', 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    line-height: 1.13;
+  }
+  .icon-btn {
+    width: 28px; height: 28px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-chalk);
+    background: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--color-obsidian);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px 0px;
+  }
+  .icon-btn:hover { background: var(--color-powder); }
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--color-obsidian);
+    outline-offset: 2px;
+  }
+  .dialog-sub {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-gravel);
+    line-height: 1.6;
+  }
+  .settings-area {
+    width: 100%;
+    min-height: 180px;
+    max-height: 40vh;
+    resize: vertical;
+    background: #ffffff;
+    border: 1px solid var(--color-chalk);
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-obsidian);
+    box-shadow: var(--shadow-inset);
+    transition: border-color .12s ease, box-shadow .12s ease;
+  }
+  .settings-area:hover { border-color: var(--color-fog); }
+  .settings-area:focus {
+    outline: none;
+    border-color: var(--color-obsidian);
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 0px 1px inset;
+  }
+  .dialog-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .dialog-help {
+    font-size: 12px;
+    color: var(--color-gravel);
+    line-height: 1.5;
+    flex: 1;
+    min-width: 0;
+  }
+  .dialog-help.error { color: var(--color-ember); }
+  .dialog-help.ok { color: var(--color-obsidian); }
+  .dialog-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .ghost-pill.primary {
+    background: var(--color-obsidian);
+    color: var(--color-eggshell);
+    border-color: var(--color-obsidian);
+  }
+  .ghost-pill.primary:hover {
+    background: #1a1a1a;
+  }
+
+  /* ghost pill / text button */
+  .ghost-pill {
+    background: #ffffff;
+    border: 1px solid var(--color-chalk);
+    color: var(--color-obsidian);
+    border-radius: 9999px;
+    padding: 6px 12px;
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: rgba(0,0,0,0.06) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 1px 2px 0px;
+    transition: background .12s ease;
+  }
+  .ghost-pill:hover { background: var(--color-powder); }
+  .ghost-pill:focus-visible {
+    outline: 2px solid var(--color-obsidian);
+    outline-offset: 2px;
+  }
+
+  /* ——————————————————————————————— responsive ——————————————————————————————— */
+
+  @media (max-width: 1080px) {
+    :root { --panel-right: 264px; }
+    .canvas-card { padding: 32px 32px; }
+    .stage { padding: 16px; }
+  }
+
+  @media (max-width: 880px) {
+    html, body { overflow: auto; }
+    .shell { height: auto; }
+    .work {
+      display: block;
+      grid-template-columns: none;
+      height: auto;
+    }
+    .panel-side, .panel-side.right {
+      border: 0;
+      border-bottom: 1px solid var(--color-chalk);
+      max-height: none;
+    }
+    .stage { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">テキスト デザイン</span>
+      <span class="sub">混植タイポグラフィ &amp; 可読性チェック — 英字優先</span>
+    </div>
+    <div class="actions">
+      <button type="button" class="ghost-pill" id="resetBtn">初期値に戻す</button>
+      <button type="button" class="ghost-pill" id="shareBtn" title="設定情報をコピー・読み込み">設定を共有</button>
+      <button type="button" class="ghost-pill" id="copyCssBtn" title="生成されたCSSをコピー">CSSをコピー</button>
+    </div>
+  </header>
+
+  <!-- share dialog -->
+  <dialog id="shareDialog" class="share-dialog" aria-labelledby="shareTitle">
+    <div class="dialog-card">
+      <div class="dialog-head">
+        <h3 id="shareTitle">設定を共有</h3>
+        <button type="button" class="icon-btn" id="closeShare" aria-label="閉じる">×</button>
+      </div>
+      <p class="dialog-sub">
+        現在の設定を JSON でコピーして他の人に共有できます。
+        逆に、JSON を貼り付けて「適用」を押すと、その設定を手元で再現します。
+      </p>
+      <textarea id="settingsJson" class="settings-area" spellcheck="false" aria-label="設定JSON"></textarea>
+      <div class="dialog-foot">
+        <span class="dialog-help" id="shareStatus">フォント・サイズ・字間・行送り・行長・背景・揃え・palt・本文を含みます。</span>
+        <div class="dialog-actions">
+          <button type="button" class="ghost-pill" id="copySettings">JSONをコピー</button>
+          <button type="button" class="ghost-pill primary" id="applySettings">適用</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="work">
+
+    <!-- CENTER: canvas -->
+    <section class="stage" aria-label="プレビュー">
+      <div class="canvas-card bg-eggshell" id="canvasCard">
+        <div class="canvas-meta">
+          <div class="pair-group">
+            <span class="pair-label"><span class="dot"></span><span id="latinTag">Inter</span></span>
+            <span class="pair-label"><span class="dot b"></span><span id="cjkTag">Noto Sans JP</span></span>
+          </div>
+          <span class="pair-label" id="metaCss" style="font-size:11px;">font-family: …</span>
+        </div>
+
+        <div
+          class="canvas"
+          id="canvas"
+          contenteditable="true"
+          spellcheck="false"
+          role="textbox"
+          aria-multiline="true"
+          aria-label="ライブプレビュー"
+          data-placeholder="ここをクリックしてテキストを入力してください…"
+        ></div>
+
+        <div class="metrics" aria-live="polite">
+          <div class="metric"><p class="k">文字数</p><p class="v" id="mChars">0</p></div>
+          <div class="metric"><p class="k">単語数</p><p class="v" id="mWords">0</p></div>
+          <div class="metric"><p class="k">行数</p><p class="v" id="mLines">0</p></div>
+          <div class="metric"><p class="k">1行平均</p><p class="v" id="mCpl">0</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: inspector -->
+    <aside class="panel-side right" aria-label="プロパティ">
+      <div class="panel-head">
+        <h2>プロパティ</h2>
+        <span class="meta">設定</span>
+      </div>
+
+      <div class="inspector">
+
+        <!-- Fonts -->
+        <section class="insp-section" aria-labelledby="sec-fonts">
+          <h3 id="sec-fonts">フォント</h3>
+
+          <div class="row">
+            <label for="latinFont">英字</label>
+            <div class="control">
+              <select id="latinFont" aria-label="Latin font">
+                <optgroup label="Sans">
+                  <option value="Inter">Inter</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                  <option value="Geist">Geist</option>
+                </optgroup>
+                <optgroup label="Serif">
+                  <option value="Cormorant Garamond">Cormorant Garamond</option>
+                  <option value="Libre Baskerville">Libre Baskerville</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="EB Garamond">EB Garamond</option>
+                  <option value="Lora">Lora</option>
+                  <option value="Fraunces">Fraunces</option>
+                  <option value="Crimson Pro">Crimson Pro</option>
+                  <option value="Spectral">Spectral</option>
+                  <option value="Source Serif 4">Source Serif 4</option>
+                  <option value="DM Serif Display">DM Serif Display</option>
+                  <option value="IBM Plex Serif">IBM Plex Serif</option>
+                </optgroup>
+                <optgroup label="Mono">
+                  <option value="Geist Mono">Geist Mono</option>
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="IBM Plex Mono">IBM Plex Mono</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="cjkFont">和字</label>
+            <div class="control">
+              <select id="cjkFont" aria-label="和字フォント">
+                <optgroup label="Gothic / Sans">
+                  <option value="Noto Sans JP">Noto Sans JP</option>
+                  <option value="Zen Kaku Gothic New">Zen Kaku Gothic New</option>
+                  <option value="Zen Kaku Gothic Antique">Zen Kaku Gothic Antique</option>
+                  <option value="BIZ UDPGothic">BIZ UDPGothic</option>
+                  <option value="M PLUS 1p">M PLUS 1p</option>
+                  <option value="M PLUS Rounded 1c">M PLUS Rounded 1c</option>
+                  <option value="Kosugi Maru">Kosugi Maru</option>
+                  <option value="Sawarabi Gothic">Sawarabi Gothic</option>
+                </optgroup>
+                <optgroup label="Mincho / Serif">
+                  <option value="Noto Serif JP">Noto Serif JP</option>
+                  <option value="Zen Old Mincho">Zen Old Mincho</option>
+                  <option value="Shippori Mincho">Shippori Mincho</option>
+                  <option value="BIZ UDPMincho">BIZ UDPMincho</option>
+                  <option value="Sawarabi Mincho">Sawarabi Mincho</option>
+                </optgroup>
+                <optgroup label="Hand">
+                  <option value="Klee One">Klee One</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="weight">太さ</label>
+            <div class="control">
+              <select id="weight" aria-label="フォントの太さ">
+                <option value="300">300 — Light(細字)</option>
+                <option value="400" selected>400 — Regular(標準)</option>
+                <option value="500">500 — Medium(中太)</option>
+                <option value="600">600 — SemiBold(やや太)</option>
+                <option value="700">700 — Bold(太字)</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Metrics -->
+        <section class="insp-section" aria-labelledby="sec-metrics">
+          <h3 id="sec-metrics">文字組み</h3>
+
+          <div class="row">
+            <label for="size">サイズ</label>
+            <div class="control with-value">
+              <input id="size" type="range" min="10" max="96" step="1" value="18" aria-label="フォントサイズ(px)" />
+              <span class="num-with-unit">
+                <input id="sizeNum" type="number" min="10" max="96" step="1" value="18" aria-label="フォントサイズの値" />
+                <span class="unit" aria-hidden="true">px</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="tracking">字間</label>
+            <div class="control with-value">
+              <input id="tracking" type="range" min="-10" max="30" step="0.5" value="0" aria-label="字間(%)" />
+              <span class="num-with-unit">
+                <input id="trackingNum" type="number" min="-10" max="30" step="0.5" value="0" aria-label="字間の値(%)" />
+                <span class="unit" aria-hidden="true">%</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="leading">行送り</label>
+            <div class="control with-value">
+              <input id="leading" type="range" min="100" max="300" step="5" value="160" aria-label="行送り(%)" />
+              <span class="num-with-unit">
+                <input id="leadingNum" type="number" min="100" max="300" step="5" value="160" aria-label="行送りの値(%)" />
+                <span class="unit" aria-hidden="true">%</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="measure">行長</label>
+            <div class="control with-value">
+              <input id="measure" type="range" min="320" max="1100" step="10" value="680" aria-label="一行の幅(px)" />
+              <span class="num-with-unit">
+                <input id="measureNum" type="number" min="320" max="1100" step="10" value="680" aria-label="行長の値" />
+                <span class="unit" aria-hidden="true">px</span>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- OpenType -->
+        <section class="insp-section" aria-labelledby="sec-opentype">
+          <h3 id="sec-opentype">OpenType機能</h3>
+
+          <div class="row">
+            <label for="paltSeg">プロポーショナル<br/>(palt)</label>
+            <div class="control">
+              <div class="seg" role="group" aria-label="palt(プロポーショナルメトリクス)">
+                <button type="button" data-palt="off" aria-pressed="true">OFF</button>
+                <button type="button" data-palt="on" aria-pressed="false">ON</button>
+              </div>
+            </div>
+          </div>
+          <p class="help" style="margin: 6px 0 0 80px; font-size: 11px; color: var(--color-gravel); line-height: 1.5;">
+            和字のアキを字面に合わせて自動調整します。約物・カナのツメ組に最適。
+          </p>
+        </section>
+
+        <!-- Display -->
+        <section class="insp-section" aria-labelledby="sec-display">
+          <h3 id="sec-display">表示</h3>
+
+          <div class="row">
+            <label>背景</label>
+            <div class="control">
+              <div class="seg" role="group" aria-label="背景色">
+                <button type="button" data-bg="eggshell" aria-pressed="true">生成り</button>
+                <button type="button" data-bg="white" aria-pressed="false">白</button>
+                <button type="button" data-bg="powder" aria-pressed="false">薄灰</button>
+                <button type="button" data-bg="dark" aria-pressed="false">黒</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>揃え</label>
+            <div class="control">
+              <div class="seg" role="group" aria-label="行揃え">
+                <button type="button" data-align="left" aria-pressed="true">左</button>
+                <button type="button" data-align="center" aria-pressed="false">中央</button>
+                <button type="button" data-align="right" aria-pressed="false">右</button>
+                <button type="button" data-align="justify" aria-pressed="false">両端</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const els = {
+    latinFont: $('latinFont'),
+    cjkFont: $('cjkFont'),
+    weight: $('weight'),
+
+    size: $('size'),     sizeNum: $('sizeNum'),
+    tracking: $('tracking'), trackingNum: $('trackingNum'),
+    leading: $('leading'),   leadingNum: $('leadingNum'),
+    measure: $('measure'),   measureNum: $('measureNum'),
+
+    canvas: $('canvas'),
+    canvasCard: $('canvasCard'),
+
+    latinTag: $('latinTag'),
+    cjkTag: $('cjkTag'),
+    metaCss: $('metaCss'),
+
+    mChars: $('mChars'),
+    mWords: $('mWords'),
+    mLines: $('mLines'),
+    mCpl:   $('mCpl'),
+
+    copyCssBtn: $('copyCssBtn'),
+    resetBtn: $('resetBtn'),
+
+    shareBtn: $('shareBtn'),
+    shareDialog: $('shareDialog'),
+    closeShare: $('closeShare'),
+    settingsJson: $('settingsJson'),
+    copySettings: $('copySettings'),
+    applySettings: $('applySettings'),
+    shareStatus: $('shareStatus'),
+  };
+
+  const DEFAULT_TEXT =
+`The quick brown fox jumps over the lazy dog.
+組版は読むためのデザインです。Typography is the craft of endowing human language with a durable visual form.
+
+英字と和字の混植は、英字フォントを優先し、対応していない文字を和字フォントへフォールバックさせる手法です。
+1234567890 — abc ABC あいう 漢字`;
+
+  let state = {
+    bg: 'eggshell',
+    align: 'left',
+    palt: false,
+  };
+
+  /* —— helpers —— */
+
+  function cssFontStack() {
+    return `'${els.latinFont.value}', '${els.cjkFont.value}', system-ui, -apple-system, sans-serif`;
+  }
+
+  function applyCanvasStyle() {
+    const c = els.canvas;
+    /* tracking is stored in % of em; convert to em for CSS */
+    const trackingEm = Number(els.tracking.value) / 100;
+    /* leading is stored in % of font-size; convert to unitless ratio */
+    const leadingRatio = Number(els.leading.value) / 100;
+
+    c.style.fontFamily = cssFontStack();
+    c.style.fontWeight = els.weight.value;
+    c.style.fontSize = els.size.value + 'px';
+    c.style.letterSpacing = trackingEm.toFixed(4) + 'em';
+    c.style.lineHeight = leadingRatio.toFixed(3);
+    c.style.maxWidth = els.measure.value + 'px';
+    c.style.textAlign = state.align;
+    c.style.fontFeatureSettings = state.palt ? '"palt" 1, "kern" 1' : '"kern" 1';
+
+    els.latinTag.textContent = els.latinFont.value;
+    els.cjkTag.textContent = els.cjkFont.value;
+
+    els.metaCss.textContent =
+      `${els.size.value}px / ${els.leading.value}% · ${els.tracking.value}% · w${els.weight.value}${state.palt ? ' · palt' : ''}`;
+  }
+
+  /* keep slider <-> number inputs in sync */
+  function bindPair(slider, num, decimals = 0) {
+    function fromSlider() {
+      num.value = decimals ? Number(slider.value).toFixed(decimals) : slider.value;
+      applyCanvasStyle();
+    }
+    function fromNum() {
+      let v = Number(num.value);
+      if (Number.isNaN(v)) return;
+      const min = Number(slider.min), max = Number(slider.max);
+      if (v < min) v = min;
+      if (v > max) v = max;
+      slider.value = v;
+      applyCanvasStyle();
+    }
+    slider.addEventListener('input', fromSlider);
+    num.addEventListener('input', fromNum);
+    num.addEventListener('change', fromNum);
+  }
+
+  bindPair(els.size, els.sizeNum, 0);
+  bindPair(els.tracking, els.trackingNum, 1);
+  bindPair(els.leading, els.leadingNum, 0);
+  bindPair(els.measure, els.measureNum, 0);
+
+  ['latinFont','cjkFont','weight'].forEach(k => els[k].addEventListener('change', applyCanvasStyle));
+
+  /* —— text sync —— */
+
+  function setCanvasText(text) {
+    els.canvas.innerHTML = '';
+    if (!text) {
+      els.canvas.dataset.empty = 'true';
+    } else {
+      els.canvas.dataset.empty = 'false';
+      const lines = text.split('\n');
+      lines.forEach((line, i) => {
+        if (i > 0) els.canvas.appendChild(document.createElement('br'));
+        els.canvas.appendChild(document.createTextNode(line));
+      });
+    }
+    updateMetrics(text);
+  }
+
+  function syncFromCanvas() {
+    const text = canvasToPlainText();
+    els.canvas.dataset.empty = text ? 'false' : 'true';
+    updateMetrics(text);
+  }
+
+  function canvasToPlainText() {
+    const clone = els.canvas.cloneNode(true);
+    clone.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+    clone.querySelectorAll('div').forEach(div => {
+      div.insertAdjacentText('beforebegin', '\n');
+      while (div.firstChild) div.parentNode.insertBefore(div.firstChild, div);
+      div.remove();
+    });
+    return clone.textContent.replace(/^\n/, '');
+  }
+
+  function updateMetrics(text) {
+    const t = text || '';
+    const chars = [...t].length;
+    const words = (t.trim().match(/[\p{L}\p{N}]+/gu) || []).length;
+    const lines = t.length === 0 ? 0 : t.split('\n').length;
+    const nonEmpty = t.split('\n').filter(l => l.length > 0);
+    const cpl = nonEmpty.length === 0
+      ? 0
+      : Math.round(nonEmpty.reduce((a, l) => a + [...l].length, 0) / nonEmpty.length);
+    els.mChars.textContent = chars;
+    els.mWords.textContent = words;
+    els.mLines.textContent = lines;
+    els.mCpl.textContent = cpl;
+  }
+
+  els.canvas.addEventListener('input', syncFromCanvas);
+
+  /* —— segmented controls —— */
+
+  document.querySelectorAll('.seg').forEach(seg => {
+    seg.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      seg.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+
+      if (btn.dataset.bg) {
+        state.bg = btn.dataset.bg;
+        applyBackground();
+      }
+      if (btn.dataset.align) {
+        state.align = btn.dataset.align;
+        applyCanvasStyle();
+      }
+      if (btn.dataset.palt) {
+        state.palt = btn.dataset.palt === 'on';
+        applyCanvasStyle();
+      }
+    });
+  });
+
+  function applyBackground() {
+    const card = els.canvasCard;
+    card.classList.remove('bg-eggshell','bg-white','bg-powder','bg-dark');
+    card.classList.add('bg-' + state.bg);
+  }
+
+  /* —— top actions —— */
+
+  els.copyCssBtn.addEventListener('click', async () => {
+    const featureSettings = state.palt ? '"palt" 1, "kern" 1' : '"kern" 1';
+    const trackingEm = (Number(els.tracking.value) / 100).toFixed(4);
+    const leadingRatio = (Number(els.leading.value) / 100).toFixed(3);
+    const css = `font-family: ${cssFontStack()};
+font-weight: ${els.weight.value};
+font-size: ${els.size.value}px;
+letter-spacing: ${trackingEm}em; /* ${els.tracking.value}% */
+line-height: ${leadingRatio}; /* ${els.leading.value}% */
+max-width: ${els.measure.value}px;
+text-align: ${state.align};
+font-feature-settings: ${featureSettings};`;
+    try {
+      await navigator.clipboard.writeText(css);
+      const orig = els.copyCssBtn.textContent;
+      els.copyCssBtn.textContent = 'コピーしました';
+      setTimeout(() => els.copyCssBtn.textContent = orig, 1200);
+    } catch (_) { /* no-op */ }
+  });
+
+  els.resetBtn.addEventListener('click', () => {
+    els.latinFont.value = 'Inter';
+    els.cjkFont.value = 'Noto Sans JP';
+    els.weight.value = '400';
+    els.size.value = '18';      els.sizeNum.value = '18';
+    els.tracking.value = '0';   els.trackingNum.value = '0.0';
+    els.leading.value = '160';  els.leadingNum.value = '160';
+    els.measure.value = '680';  els.measureNum.value = '680';
+    state.bg = 'eggshell';
+    state.align = 'left';
+    state.palt = false;
+    document.querySelectorAll('.seg').forEach(seg => {
+      seg.querySelectorAll('button').forEach((b, i) => {
+        b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      });
+    });
+    applyBackground();
+    applyCanvasStyle();
+  });
+
+  /* —— share: serialize / apply —— */
+
+  const SETTINGS_VERSION = 1;
+
+  function gatherSettings() {
+    return {
+      v: SETTINGS_VERSION,
+      latinFont: els.latinFont.value,
+      cjkFont: els.cjkFont.value,
+      weight: els.weight.value,
+      size: Number(els.size.value),
+      tracking: Number(els.tracking.value),
+      leading: Number(els.leading.value),
+      measure: Number(els.measure.value),
+      bg: state.bg,
+      align: state.align,
+      palt: state.palt,
+      text: canvasToPlainText(),
+    };
+  }
+
+  function applySettings(s) {
+    if (!s || typeof s !== 'object') throw new Error('invalid settings object');
+
+    const setSelect = (sel, val) => {
+      if (val == null) return;
+      const has = Array.from(sel.options).some(o => o.value === String(val));
+      if (has) sel.value = String(val);
+    };
+    const setRangePair = (range, num, val, decimals = 0) => {
+      if (val == null || Number.isNaN(Number(val))) return;
+      let v = Number(val);
+      const min = Number(range.min), max = Number(range.max);
+      if (v < min) v = min;
+      if (v > max) v = max;
+      range.value = v;
+      num.value = decimals ? v.toFixed(decimals) : String(v);
+    };
+    const pressSeg = (groupAttr, val) => {
+      if (val == null) return;
+      document.querySelectorAll('.seg').forEach(seg => {
+        const btns = Array.from(seg.querySelectorAll('button[data-' + groupAttr + ']'));
+        if (btns.length === 0) return;
+        btns.forEach(b => {
+          b.setAttribute('aria-pressed', b.dataset[groupAttr] === String(val) ? 'true' : 'false');
+        });
+      });
+    };
+
+    setSelect(els.latinFont, s.latinFont);
+    setSelect(els.cjkFont,   s.cjkFont);
+    setSelect(els.weight,    s.weight);
+
+    setRangePair(els.size,     els.sizeNum,     s.size,     0);
+    setRangePair(els.tracking, els.trackingNum, s.tracking, 1);
+    setRangePair(els.leading,  els.leadingNum,  s.leading,  0);
+    setRangePair(els.measure,  els.measureNum,  s.measure,  0);
+
+    if (typeof s.bg === 'string')    state.bg = s.bg;
+    if (typeof s.align === 'string') state.align = s.align;
+    if (typeof s.palt === 'boolean') state.palt = s.palt;
+
+    pressSeg('bg', state.bg);
+    pressSeg('align', state.align);
+    pressSeg('palt', state.palt ? 'on' : 'off');
+
+    if (typeof s.text === 'string') setCanvasText(s.text);
+
+    applyBackground();
+    applyCanvasStyle();
+  }
+
+  function setShareStatus(text, kind = '') {
+    els.shareStatus.classList.remove('error', 'ok');
+    if (kind) els.shareStatus.classList.add(kind);
+    els.shareStatus.textContent = text;
+  }
+
+  function openShareDialog() {
+    els.settingsJson.value = JSON.stringify(gatherSettings(), null, 2);
+    setShareStatus('フォント・サイズ・字間・行送り・行長・背景・揃え・palt・本文を含みます。');
+    if (typeof els.shareDialog.showModal === 'function') {
+      els.shareDialog.showModal();
+    } else {
+      els.shareDialog.setAttribute('open', '');
+    }
+    setTimeout(() => els.settingsJson.select(), 50);
+  }
+  function closeShareDialog() {
+    if (typeof els.shareDialog.close === 'function') els.shareDialog.close();
+    else els.shareDialog.removeAttribute('open');
+  }
+
+  els.shareBtn.addEventListener('click', openShareDialog);
+  els.closeShare.addEventListener('click', closeShareDialog);
+  els.shareDialog.addEventListener('click', (e) => {
+    if (e.target === els.shareDialog) closeShareDialog();
+  });
+
+  els.copySettings.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(els.settingsJson.value);
+      setShareStatus('JSONをコピーしました。', 'ok');
+      const orig = els.copySettings.textContent;
+      els.copySettings.textContent = 'コピー済み';
+      setTimeout(() => els.copySettings.textContent = orig, 1200);
+    } catch (_) {
+      setShareStatus('コピーに失敗しました。テキストを選択して手動でコピーしてください。', 'error');
+    }
+  });
+
+  els.applySettings.addEventListener('click', () => {
+    const raw = els.settingsJson.value.trim();
+    if (!raw) {
+      setShareStatus('JSON が空です。', 'error');
+      return;
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      applySettings(parsed);
+      setShareStatus('設定を適用しました。', 'ok');
+    } catch (err) {
+      setShareStatus('JSONの解析に失敗しました: ' + err.message, 'error');
+    }
+  });
+
+  /* —— init —— */
+  setCanvasText(DEFAULT_TEXT);
+  applyCanvasStyle();
+  applyBackground();
+})();
+</script>
+</body>
+</html>
